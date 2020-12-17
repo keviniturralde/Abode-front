@@ -30,6 +30,8 @@ class ListingCard extends React.Component {
 
             <div>{this.props.listing.address}</div>
             <img src={this.props.listing.image} alt={this.props.listing.address}></img>
+            <button onClick={() => this.props.removeListing(this.props.listing.id)}>Delete</button><></>
+
         <p>{this.props.listing.description}</p>
         <>Your Comments: 
         {(this.props.listing['reviews'].map(element => {

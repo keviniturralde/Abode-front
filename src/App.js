@@ -15,7 +15,8 @@ export class App extends React.Component {
 
     state = {
       api: [],
-      searchValue: ''
+      searchValue: '',
+      clicked: false
     }
 
     componentDidMount() {
@@ -24,8 +25,8 @@ export class App extends React.Component {
       .then(listings => this.setState ({ api : listings}))
       // .catch(console.log)
       navigator.geolocation.getCurrentPosition(function(position) {
-        console.log("Latitude is :", position.coords.latitude);
-        console.log("Longitude is :", position.coords.longitude);     
+        // console.log("Latitude is :", position.coords.latitude);
+        // console.log("Longitude is :", position.coords.longitude);     
       });
     }
     submitHandler = (listingObj) => {
@@ -37,7 +38,7 @@ export class App extends React.Component {
       })
       .then(response => response.json())
       .then(newListing => this.setState ({api: [...this.state.api, newListing]}))
-      .catch(console.log)
+      // .catch(console.log)
     }
     editSubmitHandler = (address, listingId) => {
       console.log(address, listingId)
@@ -59,7 +60,25 @@ export class App extends React.Component {
           copiedArray[idx] = newlisting;
           this.setState({ api: copiedArray });
         })
-        .catch(console.log)
+        // .catch(console.log)
+    };
+
+    removeListing = ( listingId) => {
+      console.log( listingId)
+
+      fetch(`http://localhost:3000/listings/${listingId}`, {
+        method: "DELETE",
+      })  
+      .then(resp => resp.json())
+      .then(()=> {
+        let foundObj= this.state.api.find(listingObj => listingObj.id === listingId)
+        let listingsCopy = [...this.state.api]
+        let index = listingsCopy.indexOf(foundObj)
+        listingsCopy.splice(index, 1)
+        this.setState({ api: listingsCopy})
+        console.log(listingsCopy)
+      })
+      .catch(console.log)
     };
 
     searchHandler = (e) => {
@@ -73,7 +92,7 @@ export class App extends React.Component {
         <p>
           <header> ABODE </header>
           <SearchForm searchHandler={this.searchValue} changeHandler={this.searchHandler}/>
-          <ListingContainer search={this.state.searchValue} editSubmitHandler={this.editSubmitHandler} listings={this.state.api}/>
+          <ListingContainer removeListing={this.removeListing} removeListing={this.removeListing} search={this.state.searchValue} editSubmitHandler={this.editSubmitHandler} listings={this.state.api}/>
           <NewListing submitHandler={this.submitHandler} />
            <Map
           google={this.props.google}
