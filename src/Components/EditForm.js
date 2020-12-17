@@ -21,7 +21,7 @@ class EditForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.localSubmitHandler}>
-                <input type="text" value={this.state.name} onChange={this.changeHandler} />
+                <textarea type="text" rows="4" cols="50" value={this.state.name} onChange={this.changeHandler} />
                 <button>Edit</button>
             </form>
         )
