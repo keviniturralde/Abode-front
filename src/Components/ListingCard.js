@@ -26,7 +26,7 @@ class ListingCard extends React.Component {
             :
             <h2 onClick={() => this.setState({ showEdit: true })}>{listing.address}</h2>}
 
-          <img alt="house" src={listing.img} />}</span>
+          <img alt="house" src={listing.img} /></span>
 
             <div>{this.props.listing.address}</div>
             <img src={this.props.listing.image} alt={this.props.listing.address}></img>

@@ -4,7 +4,11 @@ import ListingCard from './ListingCard'
 class ListingContainer extends React.Component {
 
     renderListings = () => {
-        return this.props.listings.map(listingObj => <ListingCard key={listingObj.id} appClickHandler={this.props.appClickHandler} editSubmitHandler={this.props.editSubmitHandler} listing={listingObj}/>)
+        // let filteredArray = this.props.movies.filter(el => el.title.includes(this.props.search))
+        // return filteredArray.map(movieObj => <Movie clickHandler={this.props.clickHandler} key={movieObj.id} movie={movieObj}/>)
+        let filteredArray = this.props.listings.filter(el => el.address.includes(this.props.search))
+        console.log(filteredArray)
+        return filteredArray.map(listingObj => <ListingCard key={listingObj.id} appClickHandler={this.props.appClickHandler} editSubmitHandler={this.props.editSubmitHandler} listing={listingObj}/>)
         
     }
     render() {

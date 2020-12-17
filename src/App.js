@@ -3,6 +3,8 @@ import React from 'react'
 import { Map, GoogleApiWrapper, Marker  } from 'google-maps-react';
 import ListingContainer from './Components/ListingContainer'
 import NewListing from './Components/newListing';
+import SearchForm from './Components/searchForm';
+
 
 const mapStyles = {
   width: '50%',
@@ -12,7 +14,8 @@ const mapStyles = {
 export class App extends React.Component {
 
     state = {
-      api: []
+      api: [],
+      searchValue: ''
     }
 
     componentDidMount() {
@@ -58,6 +61,10 @@ export class App extends React.Component {
         })
         .catch(console.log)
     };
+
+    searchHandler = (e) => {
+      this.setState ({ searchValue: e.target.value})
+    }
     
 
   render() {
@@ -65,7 +72,8 @@ export class App extends React.Component {
       <div className="App">
         <p>
           <header> ABODE </header>
-          <ListingContainer editSubmitHandler={this.editSubmitHandler} listings={this.state.api}/>
+          <SearchForm searchHandler={this.searchValue} changeHandler={this.searchHandler}/>
+          <ListingContainer search={this.state.searchValue} editSubmitHandler={this.editSubmitHandler} listings={this.state.api}/>
           <NewListing submitHandler={this.submitHandler} />
            <Map
           google={this.props.google}
