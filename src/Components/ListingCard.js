@@ -1,5 +1,10 @@
 import React from 'react' 
 import EditForm from './EditForm';
+import'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col, Badge, Card, Button} from 'react-bootstrap';
+// import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+
+ 
 
 class ListingCard extends React.Component {
     // com = (this.props.listing.reviews.forEach(element => {
@@ -20,7 +25,7 @@ class ListingCard extends React.Component {
     render() {
         const {listing} = this.props
         return(
-        <div className="card">
+        <Card className='h-100 shadow-sm bg-grey rounded'>
 
             <h1>{this.props.listing.address}</h1>
             <img src={this.props.listing.image} alt={this.props.listing.address}></img>
@@ -32,9 +37,13 @@ class ListingCard extends React.Component {
           <img alt="house" src={listing.imgage} /></span> 
         <>Your Comments: 
         {(this.props.listing['reviews'].map(element => {
-        return <li>{element.comment }</li> 
+        return <Row>
+            <li>
+            {element.comment }
+            </li>
+            </Row> 
     }))}</>
-        </div>
+        </Card>
         )
     }
 }
