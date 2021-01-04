@@ -1,7 +1,7 @@
 import React from 'react' 
 import EditForm from './EditForm';
 import'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Badge, Card, Button} from 'react-bootstrap';
+import { Container, Row, Col, Badge, Card, Button, ListGroup} from 'react-bootstrap';
 // import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
 
  
@@ -26,23 +26,27 @@ class ListingCard extends React.Component {
         const {listing} = this.props
         return(
         <Card className='h-100 shadow-sm bg-grey rounded'>
-
-            <h1>{this.props.listing.address}</h1>
-            <img src={this.props.listing.image} alt={this.props.listing.address}></img>
-            <button onClick={() => this.props.removeListing(this.props.listing.id)}>Delete</button><></>
-            <span>{this.state.showEdit? 
-            <EditForm listing={listing} submitHandler={this.props.editSubmitHandler} listingSubmitHandler={this.listingSubmitHandler} />
-            :
-            <h2 onClick={() => this.setState({ showEdit: true })}>{listing.description}</h2>}
-          <img alt="house" src={listing.imgage} /></span> 
-        <>Your Comments: 
-        {(this.props.listing['reviews'].map(element => {
-        return <Row>
-            <li>
-            {element.comment }
-            </li>
-            </Row> 
-    }))}</>
+                <Card.Img variant="thumbnail img-responsive" src={listing.image} height="300" width="500" alt={listing.address} />
+                        <Card.Title className='mb-0 font-weight-bold'>{listing.address}</Card.Title> 
+                    <Card.Body className='d-flex flex-column' >
+                        <div className='d-flex mb-2 justify-content-between'>
+                        <span>{this.state.showEdit? 
+                         <EditForm listing={listing} submitHandler={this.props.editSubmitHandler} listingSubmitHandler={this.listingSubmitHandler} />
+                         :
+                         <Card.Text className='text-secondary' onClick={() => this.setState({ showEdit: true })}>{listing.description}</Card.Text>}
+                     <img src={listing.imgage} /></span> 
+                        </div>
+                    </Card.Body>
+                      <ListGroup.Item varient='flush'>
+                         {(listing['reviews'].map(element => {
+                             return <Row className='justify-content-md-cente' >
+                           Rating: {element.rating} <>
+                           </>
+                           Comment: {element.comment}
+                          </Row> 
+                        }))}
+                      </ListGroup.Item>
+    <Button variant="primary" onClick={() => this.props.removeListing(listing.id)}> Delete Listing 🏠 </Button>
         </Card>
         )
     }
