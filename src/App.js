@@ -1,33 +1,31 @@
 import './App.css';
 import React from 'react'
-import { Map, GoogleApiWrapper, Marker  } from 'google-maps-react';
+
 import ListingContainer from './Components/ListingContainer'
 import NewListing from './Components/newListing';
 import SearchForm from './Components/searchForm';
+import MapPins from './Components/MapPins';
 
-
-const mapStyles = {
-  width: '50%',
-  height: '50%'
-};
 
 export class App extends React.Component {
 
     state = {
       api: [],
       searchValue: '',
-      clicked: false
+      clicked: false,
+      selectedPark : false
     }
 
     componentDidMount() {
-      fetch('http://localhost:3000/listings')
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      const url = "http://localhost:3000/listings"; 
+
+      fetch(url)
       .then(resp => resp.json())
       .then(listings => this.setState ({ api : listings}))
       // .catch(console.log)
-      navigator.geolocation.getCurrentPosition(function(position) {
         // console.log("Latitude is :", position.coords.latitude);
         // console.log("Longitude is :", position.coords.longitude);     
-      });
     }
     submitHandler = (listingObj) => {
       fetch('http://localhost:3000/listings', {
@@ -77,7 +75,7 @@ export class App extends React.Component {
         listingsCopy.splice(index, 1)
         this.setState({ api: listingsCopy})
         console.log(listingsCopy)
-      })
+      }) 
       .catch(console.log)
     };
 
@@ -90,30 +88,16 @@ export class App extends React.Component {
     return (
       <div className="App">
         <p>
-          <header> ABODE </header>
+          <img alt='logo' src='/images/logo.png'>
+          </img>
           <SearchForm searchHandler={this.searchValue} changeHandler={this.searchHandler}/>
           <ListingContainer removeListing={this.removeListing} removeListing={this.removeListing} search={this.state.searchValue} editSubmitHandler={this.editSubmitHandler} listings={this.state.api}/>
           <NewListing submitHandler={this.submitHandler} />
-           <Map
-          google={this.props.google}
-          zoom={14}
-          style={mapStyles}
-          initialCenter={{
-            lat: 40.7699456,
-            lng: -73.7345536
-          }}
-          >
-          <Marker
-           onClick={this.onMarkerClick}
-           name={'This is test name'}
-         />
-         </Map>
+          <MapPins lisitngs={this.state.api} selectedPark={this.state.selectedPark}/>
         </p>
       </div>
     );
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyB1WaSwbKiBYBb9IVms_ssjNH8QjqnaaDs"
-  })(App)
+export default App
