@@ -18,10 +18,10 @@ function Nav() {
                 <li>About</li>
                 </Link>
                 <Link style={navStyle} to='/about'>
-                <li>Log in</li>
-                </Link>
-                <Link style={navStyle} to='/about'>
                 <li>Send Message </li>
+                </Link>
+                <Link style={navStyle} to='/login'>
+                <li>Log in</li>
                 </Link>
             </ul>
         </nav>

@@ -23,6 +23,17 @@ nav {
   box-shadow: 0 1px 0 0 #4dd0e1;
 }
 
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 60px 0;
+  }
+
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+
 /* body {
  padding: 10px;
  font-family: sans-serif;

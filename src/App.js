@@ -8,6 +8,7 @@ import MapPins from './Components/MapPins';
 import Nav from './Components/Nav';
 import About from './Components/About'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Login from './Components/LoginPage';
 
 
 
@@ -103,7 +104,7 @@ export class App extends React.Component {
             <Nav/>
               <Switch>
                 <Route path='/about' exact  component={About}/>
-                {/* <Route path='/' exact component={Home} /> */}
+                <Route path='/login' exact component={Login} />
                 <Route path='/' exact component={App}>
                   <SearchForm searchHandler={this.searchValue} changeHandler={this.searchHandler}/>
                   <ListingContainer removeListing={this.removeListing} search={this.state.searchValue} editSubmitHandler={this.editSubmitHandler} listings={this.state.api}/>
