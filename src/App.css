@@ -2,14 +2,43 @@
   text-align: center;
 }
 
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 7vh;
+  background: CornflowerBlue;
+  color: white
+}
+
+.nav-links {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+.active-cyan-2 input.form-control[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+
+/* body {
+ padding: 10px;
+ font-family: sans-serif;
+ background: url('/images/back.jpg');
+ text-align: center;
+} */
+/* 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
 
 
+/* 
 .App-link {
   color: #61dafb;
 }
@@ -21,5 +50,5 @@
   to {
     transform: rotate(360deg);
   }
-  
-}
+   
+  } */
