@@ -17,9 +17,8 @@ export class App extends React.Component {
     state = {
       api: [],
       searchValue: '',
-      clicked: false,
-      selectedHouse : false
-    }
+      clicked: false
+   }
 
     componentDidMount() {
       const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -88,11 +87,11 @@ export class App extends React.Component {
       this.setState ({ searchValue: e.target.value})
     }
 
-    addPinClicked = () => {
-      this.setState(prevState => ({
-          selectedHouse: !prevState.selectedHouse
-      }))
-  }
+  //   addPinClicked = () => {
+  //     this.setState(prevState => ({
+  //         selectedHouse: !prevState.selectedHouse
+  //     }))
+  // }
     
     
   render() {
@@ -109,7 +108,7 @@ export class App extends React.Component {
                   <SearchForm searchHandler={this.searchValue} changeHandler={this.searchHandler}/>
                   <ListingContainer removeListing={this.removeListing} search={this.state.searchValue} editSubmitHandler={this.editSubmitHandler} listings={this.state.api}/>
                   <NewListing submitHandler={this.submitHandler} />
-                  <MapPins listings={this.state.api} selectedHouse={this.state.selectedHouse} clickHandler={this.addPinClicked}/>
+                  <MapPins listings={this.state.api} />
                 </Route>
               </Switch>
           </Router>

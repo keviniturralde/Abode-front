@@ -20,7 +20,7 @@ function About() {
     }
     return (
         <Card className='h-100 shadow-sm bg-grey rounded'>
-            <Card.Img variant="thumbnail img-responsive" src='https://cdn.theatlantic.com/static/mt/assets/science/cat_caviar.jpg' height="300" width="500" alt={user.username} />
+            <Card.Img class='bd-placeholder-img card-img-left'variant="thumbnail img-responsive" src='https://cdn.theatlantic.com/static/mt/assets/science/cat_caviar.jpg' height="300" width="500" alt={user.username} />
                 <Card.Title className='mb-0 font-weight-bold'>{user.username} Iturralde         {user.age}</Card.Title> 
             <Card.Body className='d-flex flex-column' >
              Im a freshly graduated student from a bootcamp, working at a steller new start up. I have great ambitions so i will be looking to scale up for housing.
@@ -28,15 +28,6 @@ function About() {
             </Card.Body >
 
         </Card>
-        /* <div>
-            <header>
-            <h1> Welcome {`${user.username}`}</h1>
-            <h2>Users Name: {user.username}</h2>
-            <h3>Users Age: {user.age}</h3>
-            <h4>Users interest:{user.interest}</h4>
-            <img></img>
-            </header>    
-        </div> */
     )
 }
 

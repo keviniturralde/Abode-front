@@ -8,9 +8,19 @@ const mapStyles = {
   };
 
   class MapPins extends React.Component {
+
+    state = {
+        selectedHouse : false
+
+    }
+    addPinClicked = () => {
+        this.setState(prevState => ({
+            selectedHouse: !prevState.selectedHouse
+        }))
+    }
       
       render(){
-          const {selectedHouse} = this.props
+
           return (
               <Map
               google={this.props.google}
@@ -28,7 +38,8 @@ const mapStyles = {
                             lng: listingObj.longitude
                         }} 
                         onClick={() => {
-                            this.props.clickHandler()
+                            this.setState({ selectedHouse: listingObj})
+                        // console.log(this.state.selectedHouse.latitude)
                         }} 
                         icon={{
                             url: 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/house_1f3e0.png',
@@ -37,18 +48,17 @@ const mapStyles = {
                         
                         />
                         ))}
-                    { selectedHouse && (
+                    { this.state.selectedHouse && (
                     <InfoWindow
+                    visible={true}
                     position= {{
-                        lat: parseInt(this.props.listings[0].latitude),
-                        lng: parseInt(this.props.listings[0].longitude)
-                    }}>
+                        lat: parseFloat(this.state.selectedHouse.latitude),
+                        lng: parseFloat(this.state.selectedHouse.longitude)
+                    }} >
                         <div>
-                            {this.props.listings[0].image}
+                           <h3>{this.state.selectedHouse.address}</h3>
+                           <img src={this.state.selectedHouse.image} height="300" width="500"/>
                         </div>
-                    {console.log(this.props.listings[0].image)}
-                    {console.log(selectedHouse)}
-
                     </InfoWindow>
                     )}
 
