@@ -9,6 +9,7 @@ import Nav from './Components/Nav';
 import About from './Components/About'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Login from './Components/LoginPage';
+import SideBar from './Components/SideBar'
 
 
 

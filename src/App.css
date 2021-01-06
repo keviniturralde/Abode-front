@@ -2,6 +2,27 @@
   text-align: center;
 }
 
+.new-listing-form {
+  display: center;
+  text-align: left;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-shadow:0 0 15px 4px rgba(17, 17, 17, 0.06);
+}
+/* div.form-group {
+display: flex;
+padding:10px;
+
+} */
+
+
+/* .SideBar {
+  height: 100%;
+  width: 300px
+  background-color: rgb(221, 213, 213);
+} */
+
 nav {
   display: flex;
   justify-content: space-around;
@@ -33,6 +54,7 @@ nav {
     max-width: 320px;
   }
 }
+
 
 /* body {
  padding: 10px;

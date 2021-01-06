@@ -12,6 +12,7 @@ const SearchForm = ({ searchValue, changeHandler }) => {
             <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" value={searchValue} onChange={changeHandler}/>
         </form>
         </MDBCol>
+        
     
     )
 }
